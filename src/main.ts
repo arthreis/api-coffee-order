@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import conf from './conf/configuration';
 
 async function bootstrap() {
 
@@ -12,10 +13,12 @@ async function bootstrap() {
 
   const options = new DocumentBuilder()
     .setTitle('DOC-API-COFFEE')
-    .setVersion('1.0')
+    .setVersion(conf.getVersion)
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
+
+  console.log("API running on port :"+ port);
 
   await app.listen(port);
 }

@@ -5,10 +5,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CoffeeSchema } from './schemas/coffee.schemas';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{name: 'Coffee', schema: CoffeeSchema}]),
-  ],
-  controllers: [CoffeeController],
-  providers: [CoffeeService],
+    imports: [
+        MongooseModule.forFeature([{name: 'Coffee', schema: CoffeeSchema}]),
+    ],
+    controllers: [CoffeeController],
+    providers: [CoffeeService],
 })
 export class CoffeeModule {}
