@@ -19,7 +19,7 @@ export class CoffeeService {
     }
 
     async addCoffee(newCoffee: Coffee): Promise<Coffee> {
-        const coffee = await this.coffeeModel(newCoffee);
+        const coffee = await this.coffeeModel.create(newCoffee);
         return coffee.save();
     }
 
