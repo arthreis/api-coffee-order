@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { apiTitle, version } from "./conf/configuration";
 
 @Injectable()
 export class AppService {
   root(): string {
-    return '{ "title": "Api Coffee Order", "version": "d0.v0.3" }';
+    return '{ "title": "'+apiTitle+'", "version": "'+version+'" }';
   }
 }

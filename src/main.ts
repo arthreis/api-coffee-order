@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-const config = require('./conf/configuration');
+import { apiTitle, version } from "./conf/configuration";
 
 declare const module: any;
 
@@ -14,8 +14,8 @@ async function bootstrap() {
     const port = normalizePort(process.env.PORT || 3000);
 
     const options = new DocumentBuilder()
-        .setTitle('DOC-API-COFFEE')
-        .setVersion(config.version)
+        .setTitle(apiTitle)
+        .setVersion(version)
         .build();
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('api', app, document);
