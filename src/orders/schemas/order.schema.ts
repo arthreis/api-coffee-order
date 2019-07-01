@@ -1,13 +1,13 @@
 import * as mongoose from 'mongoose';
 
 export const OrderSchema = new mongoose.Schema({
-    user: { 
-        type: String, 
+    user: {
+        type: String,
         required: true,
     },
-    createDate: { 
-        type: Date, 
-        required: true, 
+    createDate: {
+        type: Date,
+        required: true,
     },
     products: [{
         quantity: {
