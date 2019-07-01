@@ -1,7 +1,9 @@
 import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { IOrder } from './interfaces/order.interface';
+import { ApiUseTags } from '@nestjs/swagger';
 
+@ApiUseTags('Order')
 @Controller('orders')
 export class OrdersController {
 
