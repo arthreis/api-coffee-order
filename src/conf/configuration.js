@@ -1,3 +1,3 @@
-export const configurations = {
-    getVersion = () => {return "1.0.0"}
+module.exports = {
+    version: "1.2.0",
 }
