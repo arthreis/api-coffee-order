@@ -8,7 +8,9 @@
     "build": "tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\"",
     "start:local": "ts-node -r tsconfig-paths/register src/main.ts",
+    "webpack": "webpack --config webpack.config.js",
     "start": "node dist/main.js",
+    "start:web": "node dist/server",
     "start:dev": "nodemon",
     "start:debug": "nodemon --config nodemon-debug.json",
     "prestart:prod": "rimraf dist && npm run build",
@@ -27,6 +29,7 @@
     "@nestjs/mongoose": "^6.1.2",
     "@nestjs/platform-express": "^6.0.0",
     "@nestjs/swagger": "^3.0.2",
+    "@types/mongoose": "^5.5.6",
     "mongoose": "^5.5.11",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
@@ -45,11 +48,15 @@
     "prettier": "^1.15.3",
     "supertest": "^3.4.1",
     "ts-jest": "24.0.2",
+    "ts-loader": "^6.0.4",
     "ts-node": "8.1.0",
     "tsconfig-paths": "3.8.0",
     "tslint": "5.16.0",
     "typescript": "3.4.3",
-    "wait-on": "^3.2.0"
+    "wait-on": "^3.2.0",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.5",
+    "webpack-node-externals": "^1.7.2"
   },
   "jest": {
     "moduleFileExtensions": [
