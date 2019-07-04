@@ -4,6 +4,17 @@ export const OrderSchema = new mongoose.Schema({
     user: {
         type: String,
         required: true,
+        unique: true,
+    },
+    orderNumber: {
+        type: String,
+        required: true,
+    },
+    status: {
+        type: String,
+        enum:['created', 'done'],
+        default: 'created',
+        required: true,
     },
     products: [{
         quantity: {
