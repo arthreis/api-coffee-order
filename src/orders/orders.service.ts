@@ -10,6 +10,14 @@ export class OrdersService {
         @InjectModel("Order") private readonly orderSchema: Model<IOrder>
     ){}
 
+    async find(orderId: ObjectId): Promise<IOrder> {
+        try {
+            return await this.orderSchema.findOne({_id: orderId})
+        } catch (error) {
+            throw new InternalServerErrorException(error.message);
+        }
+    }
+
     async findAll(): Promise<IOrder[]> {
         try {
             return await this.orderSchema.find();
