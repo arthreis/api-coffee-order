@@ -31,4 +31,8 @@ export const OrderSchema = new mongoose.Schema({
             required: true,
         }
     }],
+    totalValue: {
+        type: Number,
+        required: true,
+    },
 }, {timestamps: true});
