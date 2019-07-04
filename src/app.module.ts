@@ -6,7 +6,7 @@ import { CoffeeModule } from './product/coffee.module';
 import { OrdersModule } from './orders/orders.module';
 
 const PROD = "mongodb://coffee-order-user:c0ff33-0rd3r@ds261296.mlab.com:61296/coffee-order";
-const DEV  = "mongodb://localhost/coffee-order";
+const DEV  = "mongodb://0.0.0.0/coffee-order";
 
 @Module({
   imports: [
