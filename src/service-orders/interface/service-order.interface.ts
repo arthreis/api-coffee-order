@@ -3,7 +3,7 @@ import { ObjectId } from "bson";
 
 export interface IServiceOrder extends Document{
     id?: ObjectId
-    user: string
+    user: ObjectId
     serviceOrderNumber: string
     status: string
     orders: [ObjectId]

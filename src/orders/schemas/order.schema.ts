@@ -1,20 +1,14 @@
 import * as mongoose from 'mongoose';
 
 export const OrderSchema = new mongoose.Schema({
-    user: {
-        type: String,
-        required: true,
-        unique: true,
-    },
     orderNumber: {
         type: String,
         required: true,
     },
     status: {
         type: String,
-        enum:['created', 'done'],
-        default: 'created',
-        required: true,
+        enum: ['awaiting', 'associated'],
+        default: 'awaiting',
     },
     products: [{
         quantity: {
@@ -31,6 +25,11 @@ export const OrderSchema = new mongoose.Schema({
             required: true,
         }
     }],
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'UserSchema',
+        required: true,
+    },
     totalValue: {
         type: Number,
         required: true,

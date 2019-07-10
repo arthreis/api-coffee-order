@@ -5,4 +5,4 @@ export const CoffeeSchema = new mongoose.Schema({
     description: String,
     price: Number,
     imagePath: String,
-});
+}, {timestamps: true});
