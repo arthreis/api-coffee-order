@@ -9,11 +9,11 @@ export const ServiceOrderSchema = new mongoose.Schema({
     serviceOrderNumber: {
         type: String,
         required: true,
-        unique: true,        
+        unique: true,
     },
     status: {
         type: String,
-        enum: ['']
+        enum: ['awaiting', 'associated','completed','closed']
     },
     orders: [{
         order: {

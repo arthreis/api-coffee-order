@@ -1,46 +1,50 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { IServiceOrder } from './interface/service-order.interface';
+import { ObjectId } from 'bson';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class ServiceOrdersService {
     constructor(
-        @InjectModel("ServiceOrder") private readonly orderSchema: Model<IOrder>
+        @InjectModel("ServiceOrder") private readonly serciceOrderSchema: Model<IServiceOrder>
     ){}
 
-    async find(orderId: ObjectId): Promise<IOrder> {
+    async find(osNumber: String): Promise<IServiceOrder> {
         try {
-            return await this.orderSchema.findOne({_id: orderId})
+            return await this.serciceOrderSchema.findOne({serviceOrderNumber: osNumber})
         } catch (error) {
             throw new InternalServerErrorException(error.message);
         }
     }
 
-    async findAll(): Promise<IOrder[]> {
+    async findAll(): Promise<IServiceOrder[]> {
         try {
-            return await this.orderSchema.find();
+            return await this.serciceOrderSchema.find();
         } catch (error) {
             throw new InternalServerErrorException(error.message);
         }
     }
 
-    async create(order: IOrder): Promise<IOrder> {
+    async create(serviceOrder: IServiceOrder): Promise<IServiceOrder> {
         try {
-            return await this.orderSchema.create(order);
+            return await this.serciceOrderSchema.create(serviceOrder);
         } catch (error) {
             throw new InternalServerErrorException(error.message);
         }
     }
 
-    async update(order: IOrder): Promise<IOrder> {
+    async update(serviceOrder: IServiceOrder): Promise<IServiceOrder> {
         try {
-            return await this.orderSchema.findOneAndUpdate({_id: order._id}, order, {new: true});
+            return await this.serciceOrderSchema.findOneAndUpdate({serviceOrderNumber: serviceOrder.serviceOrderNumber}, serviceOrder, {new: true});
         } catch (error) {
             throw new InternalServerErrorException(error.message);
         }
     }
 
-    async delete(orderId: ObjectId): Promise<IOrder> {
+    async delete(serviceOrderNumber: ObjectId): Promise<IServiceOrder> {
         try {
-            return await this.orderSchema.findOneAndDelete({_id: orderId});
+            return await this.serciceOrderSchema.findOneAndDelete({serviceOrderNumber: serviceOrderNumber});
         } catch (error) {
             throw new InternalServerErrorException(error.message);
         }
