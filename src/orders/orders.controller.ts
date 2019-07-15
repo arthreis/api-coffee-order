@@ -2,7 +2,7 @@ import { Controller, Get, Post, Put, Delete, Body, Param, Query } from '@nestjs/
 import { OrdersService } from './orders.service';
 import { IOrder } from './interfaces/order.interface';
 import { ApiUseTags } from '@nestjs/swagger';
-import { ValidateObjectId } from 'src/shared/pipes/validate-object-id.pipes';
+import { ValidateObjectId } from '../shared/pipes/validate-object-id.pipes';
 
 @ApiUseTags('Order')
 @Controller('orders')
