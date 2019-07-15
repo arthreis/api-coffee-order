@@ -14,8 +14,8 @@ async function bootstrap() {
     const port = normalizePort(process.env.PORT || 3000);
 
     const options = new DocumentBuilder()
-        .setTitle(apiTitle)
-        .setVersion(version)
+        .setTitle(apiTitle())
+        .setVersion(version())
         .build();
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('api', app, document);
