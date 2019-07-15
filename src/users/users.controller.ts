@@ -1,7 +1,7 @@
 import { Controller, Get, Param, Res, HttpStatus, Body, Post, Put, Delete } from '@nestjs/common';
 import { ApiUseTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
-import { ValidateObjectId } from 'src/shared/pipes/validate-object-id.pipes';
+import { ValidateObjectId } from '../shared/pipes/validate-object-id.pipes';
 import { IUser } from './interface/user.interface';
 
 @ApiUseTags('Users')
