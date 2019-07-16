@@ -2,7 +2,9 @@ import { Controller, Get, Res, HttpStatus, Param, NotFoundException, Body, Post,
 import { CoffeeService } from './coffee.service';
 import { ValidateObjectId } from '../shared/pipes/validate-object-id.pipes';
 import { Coffee } from './interfaces/coffee.interface';
+import { ApiUseTags } from '@nestjs/swagger';
 
+@ApiUseTags('Coffee')
 @Controller('product')
 export class CoffeeController {
 
