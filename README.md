@@ -10,7 +10,7 @@
 <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
 
 <p align="center">  
-  <a href="https://twitter.com/nestframework"><img src="https://travis-ci.org/arthreis/api-coffee-order.svg?branch=master"></a>
+  <a href="https://travis-ci.org/arthreis/api-coffee-order"><img src="https://travis-ci.org/arthreis/api-coffee-order.svg?branch=master"></a>
 </p>
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
