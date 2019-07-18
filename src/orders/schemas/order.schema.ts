@@ -10,12 +10,12 @@ export const OrderSchema = new mongoose.Schema({
         enum: ['awaiting', 'associated'],
         default: 'awaiting',
     },
-    products: [{
+    items: [{
         quantity: {
             type: Number,
             required: true,
         },
-        price: {
+        subtotal: {
             type: Number,
             required: true,
         },
