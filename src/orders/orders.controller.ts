@@ -1,8 +1,10 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, Query } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { IOrder } from './interfaces/order.interface';
-import { ApiUseTags } from '@nestjs/swagger';
+import { ApiUseTags, ApiImplicitBody } from '@nestjs/swagger';
 import { ValidateObjectId } from '../shared/pipes/validate-object-id.pipes';
+import { CreateOrderDto } from './dto/create-order.dto';
+import { ObjectId } from 'bson';
 
 @ApiUseTags('Order')
 @Controller('orders')
@@ -11,7 +13,7 @@ export class OrdersController {
     constructor(private readonly ordersService: OrdersService){}
 
     @Get(':orderId')
-    async find(@Param('orderId', new ValidateObjectId()) orderId){
+    async find(@Param('orderId', new ValidateObjectId()) orderId: ObjectId){
         return await this.ordersService.find(orderId);
     }
     @Get()
@@ -20,8 +22,8 @@ export class OrdersController {
     }
 
     @Post()
-    async create(@Body() order: IOrder) {
-        return await this.ordersService.create(order);
+    async create(@Body() createOrderDto: CreateOrderDto) {
+        return await this.ordersService.create(createOrderDto);
     }
 
     @Put()
@@ -30,7 +32,7 @@ export class OrdersController {
     }
 
     @Delete(':orderId')
-    async delete(@Param('orderId', new ValidateObjectId()) orderId){
+    async delete(@Param('orderId', new ValidateObjectId()) orderId: ObjectId){
         return await this.ordersService.delete(orderId);
     }
 }

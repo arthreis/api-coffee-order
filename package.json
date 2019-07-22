@@ -42,6 +42,7 @@
     "@types/jest": "^23.3.13",
     "@types/node": "^10.12.18",
     "@types/supertest": "^2.0.7",
+    "@types/uuid": "^3.4.5",
     "concurrently": "^4.1.0",
     "jest": "^24.0.0",
     "nodemon": "^1.18.9",
@@ -73,6 +74,6 @@
     "testEnvironment": "node"
   },
   "engines": {
-      "node": "10.16.0"
+    "node": "10.16.0"
   }
 }

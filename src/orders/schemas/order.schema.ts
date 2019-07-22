@@ -14,6 +14,7 @@ export const OrderSchema = new mongoose.Schema({
         quantity: {
             type: Number,
             required: true,
+            min: 1
         },
         subtotal: {
             type: Number,
@@ -34,4 +35,8 @@ export const OrderSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-}, {timestamps: true});
+}, {timestamps: true}).pre('save', function(next){
+    console.log(this);
+    console.log(this.isNew);
+    next();
+});
