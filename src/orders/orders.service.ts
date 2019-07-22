@@ -3,6 +3,8 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IOrder } from './interfaces/order.interface';
 import { ObjectId } from 'bson';
+import { CreateOrderDto } from "./dto/create-order.dto";
+import { generateOrderNumber } from 'src/utils/utility';
 
 @Injectable()
 export class OrdersService {
@@ -26,8 +28,13 @@ export class OrdersService {
         }
     }
 
-    async create(order: IOrder): Promise<IOrder> {
+    async create(createOrderDto: CreateOrderDto): Promise<IOrder> {
         try {
+            const order = new this.orderSchema(createOrderDto);
+            order.orderNumber = generateOrderNumber();
+            order.items.map(item => item.subtotal = (parseFloat('2.25') * parseInt(item.quantity.toString())));
+            order.totalValue = order.items.map(item => item.subtotal).reduce( (total, amount) => parseFloat(total.toFixed(2)) + parseFloat(amount.toFixed(2)));
+
             return await this.orderSchema.create(order);
         } catch (error) {
             throw new InternalServerErrorException(error.message);
