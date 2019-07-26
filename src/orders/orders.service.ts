@@ -2,19 +2,21 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IOrder } from './interfaces/order.interface';
+import { Coffee } from './../product/interfaces/coffee.interface';
 import { ObjectId } from 'bson';
-import { CreateOrderDto } from "./dto/create-order.dto";
-import { generateOrderNumber } from 'src/utils/utility';
+import { CreateOrderDto } from './dto/create-order.dto';
+import { generateOrderNumber } from './../utils/utility';
 
 @Injectable()
 export class OrdersService {
     constructor(
-        @InjectModel("Order") private readonly orderSchema: Model<IOrder>
-    ){}
+        @InjectModel('Order') private readonly orderSchema: Model<IOrder>,
+        @InjectModel('Coffee') private readonly coffeeSchema: Model<Coffee>,
+    ) {}
 
     async find(orderId: ObjectId): Promise<IOrder> {
         try {
-            return await this.orderSchema.findOne({_id: orderId})
+            return await this.orderSchema.findOne({_id: orderId});
         } catch (error) {
             throw new InternalServerErrorException(error.message);
         }
@@ -30,11 +32,17 @@ export class OrdersService {
 
     async create(createOrderDto: CreateOrderDto): Promise<IOrder> {
         try {
-            const order = new this.orderSchema(createOrderDto);
-            order.orderNumber = generateOrderNumber();
-            order.items.map(item => item.subtotal = (parseFloat('2.25') * parseInt(item.quantity.toString())));
-            order.totalValue = order.items.map(item => item.subtotal).reduce( (total, amount) => parseFloat(total.toFixed(2)) + parseFloat(amount.toFixed(2)));
+            const productsIds = createOrderDto.items.map(item => item.product);
 
+            const coffeesModel = await this.coffeeSchema.find({_id: {$in: productsIds} }).exec();
+            //createOrderDto.items.map(item => item.product.price = coffeesModel.filter( c => c.id === item.product)[0].price);
+
+            createOrderDto.items.map( item => item.subtotal = (item.product.price * item.quantity) );
+
+            const order = new this.orderSchema(createOrderDto);
+            let a = createOrderDto.items.map(item => item.subtotal).reduce( (total, amount) => parseFloat( total.toFixed(2) + amount.toFixed(2) ));
+            order.totalValue = 0;
+            order.orderNumber = generateOrderNumber();
             return await this.orderSchema.create(order);
         } catch (error) {
             throw new InternalServerErrorException(error.message);
