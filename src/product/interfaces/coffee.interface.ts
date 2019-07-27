@@ -1,8 +1,7 @@
-import { Document } from 'mongoose';
-import { ObjectId } from 'bson';
+import * as mongoose from 'mongoose';
 
-export interface Coffee extends Document {
-    readonly id?: ObjectId;
+export interface Coffee extends mongoose.Document {
+    readonly id?: mongoose.Schema.Types.ObjectId;
     readonly name: string;
     readonly description: string;
     readonly imagePath: string;

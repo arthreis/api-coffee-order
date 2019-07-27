@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-export interface IOrder extends mongoose.Document{
+export interface IOrder extends mongoose.Document {
 
     id?: mongoose.Schema.Types.ObjectId
 
