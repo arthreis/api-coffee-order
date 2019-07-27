@@ -35,13 +35,16 @@ export class OrdersService {
             const productsIds = createOrderDto.items.map(item => item.product);
 
             const coffeesModel = await this.coffeeSchema.find({_id: {$in: productsIds} }).exec();
-            //createOrderDto.items.map(item => item.product.price = coffeesModel.filter( c => c.id === item.product)[0].price);
 
-            createOrderDto.items.map( item => item.subtotal = (item.product.price * item.quantity) );
+            createOrderDto.items.map(item => {
+                const product = coffeesModel.filter( c => {
+                    return c.id === item.product;
+                })[0];
+                item.subtotal = product.price * item.quantity;
+            });
 
             const order = new this.orderSchema(createOrderDto);
-            let a = createOrderDto.items.map(item => item.subtotal).reduce( (total, amount) => parseFloat( total.toFixed(2) + amount.toFixed(2) ));
-            order.totalValue = 0;
+            order.totalValue = order.items.map(item => item.subtotal).reduce( (total, amount) => total + amount );
             order.orderNumber = generateOrderNumber();
             return await this.orderSchema.create(order);
         } catch (error) {
