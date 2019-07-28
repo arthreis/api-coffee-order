@@ -36,13 +36,13 @@ export class OrdersService {
 
             const coffeesModel = await this.coffeeSchema.find({_id: {$in: productsIds} }).exec();
 
-            if (!coffeesModel.every(coffee => productsIds.includes(coffee._id))) {
+            if (!coffeesModel.every(coffee => productsIds.includes(coffee.id))) {
                 throw new InternalServerErrorException('Product not found!');
             }
 
             createOrderDto.items.map(item => {
                 const product = coffeesModel.find( c => c.id === item.product );
-                item.subtotal = product.price * item.quantity;
+                item.subtotal = Number((item.quantity * product.price).toFixed(2));
             });
 
             const order = new this.orderSchema(createOrderDto);
