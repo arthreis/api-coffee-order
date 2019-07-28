@@ -12,7 +12,7 @@ const LOCAL  = "mongodb://0.0.0.0/coffee-order";
 
 @Module({
   imports: [
-    MongooseModule.forRoot(DEV || LOCAL, {useNewUrlParser: true}),
+    MongooseModule.forRoot(DEV || LOCAL, {useNewUrlParser: true, useCreateIndex: true}),
     CoffeeModule,
     UsersModule,
     OrdersModule,
