@@ -37,7 +37,4 @@ export const OrderSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-}, {timestamps: true}).pre('save', (next) => {
-    console.log('pre.save.order');
-    next();
-});
+}, {timestamps: true});
