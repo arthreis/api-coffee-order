@@ -1,4 +1,4 @@
-import * as mongoose from "mongoose";
+import * as mongoose from 'mongoose';
 
 export const ServiceOrderSchema = new mongoose.Schema({
     serviceOrderNumber: {
@@ -8,17 +8,17 @@ export const ServiceOrderSchema = new mongoose.Schema({
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'UserSchema',
+        ref: 'User',
     },
     status: {
         type: String,
         enum: ['awaiting payment', 'awaiting delivery', 'completed'],
-        default: 'awaiting payment'
+        default: 'awaiting payment',
     },
     orders: [{
         order: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'OrderSchema'
-        }
-    }]
+            ref: 'Order',
+        },
+    }],
 }, {timestamps: true});
