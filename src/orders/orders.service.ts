@@ -46,7 +46,8 @@ export class OrdersService {
             });
 
             const order = new this.orderSchema(createOrderDto);
-            order.totalValue = order.items.map(item => item.subtotal).reduce( (total, amount) => total + amount );
+            const totalValue = order.items.map(item => item.subtotal).reduce( (total, amount) => total + amount );
+            order.totalValue = Number(totalValue.toFixed(2));
             order.orderNumber = generateOrderNumber();
             return await this.orderSchema.create(order);
         } catch (error) {
