@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { apiTitle, version } from "./conf/configuration";
+import { apiTitle, version } from './conf/configuration';
 
 declare const module: any;
 
@@ -20,24 +20,24 @@ async function bootstrap() {
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('api', app, document);
 
-    console.log("API running on port :"+ port);
+    console.log('API running on port :' + port);
 
     await app.listen(port);
 
-    if(module.hot){
+    if (module.hot) {
         module.hot.accept();
         module.hot.dispose(() => app.close());
     }
 }
 
-function normalizePort(val){
+function normalizePort(val) {
     const port = parseInt(val,  10);
 
-    if(isNaN(port)){
+    if (isNaN(port)) {
         return val;
     }
 
-    if(port >= 0){
+    if (port >= 0) {
         return port;
     }
 
