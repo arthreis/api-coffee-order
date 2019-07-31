@@ -8,31 +8,31 @@ import { IUser } from './interface/user.interface';
 @Controller('users')
 export class UsersController {
 
-    constructor(private readonly usersService: UsersService){}
+    constructor(private readonly usersService: UsersService) {}
 
     @Get(':userId')
-    async find(@Param('userId', new ValidateObjectId()) userId){
+    async find(@Param('userId', new ValidateObjectId()) userId) {
         return await this.usersService.find(userId);
     }
 
     @Get()
-    async findAll(@Res() res){
+    async findAll(@Res() res) {
         const users = await this.usersService.findAll();
         return res.status(HttpStatus.OK).json(users);
     }
 
     @Post()
-    async create(@Body() user: IUser){
+    async create(@Body() user: IUser) {
         return await this.usersService.create(user);
     }
 
     @Put()
-    async update(@Body() user: IUser){
+    async update(@Body() user: IUser) {
         return await this.usersService.update(user);
     }
 
     @Delete(':userId')
-    async delete(@Param('userId', new ValidateObjectId()) userId){
+    async delete(@Param('userId', new ValidateObjectId()) userId) {
         return await this.usersService.delete(userId);
     }
 }

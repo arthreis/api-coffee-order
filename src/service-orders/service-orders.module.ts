@@ -5,10 +5,10 @@ import { ServiceOrdersController } from './service-orders.controller';
 import { ServiceOrdersService } from './service-orders.service';
 
 @Module({
-    imports:[
-        MongooseModule.forFeature([{ name: 'ServiceOrder', schema: ServiceOrderSchema }])
+    imports: [
+        MongooseModule.forFeature([{ name: 'ServiceOrder', schema: ServiceOrderSchema }]),
     ],
     controllers: [ServiceOrdersController],
-    providers: [ServiceOrdersService]
+    providers: [ServiceOrdersService],
 })
 export class ServiceOrdersModule {}

@@ -1,8 +1,7 @@
-import { ObjectId } from "bson";
-import { Document } from "mongoose";
+import * as mongoose from 'mongoose';
 
-export interface IUser extends Document {
-    id?: ObjectId
+export interface IUser extends mongoose.Document {
+    id?: mongoose.Schema.Types.ObjectId
     name: string
     lastName: string
     email: string

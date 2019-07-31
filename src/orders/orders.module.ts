@@ -7,9 +7,9 @@ import { CoffeeSchema } from './../product/schemas/coffee.schemas';
 
 @Module({
     imports: [
-        MongooseModule.forFeature([{name: 'Order', schema: OrderSchema}, {name: 'Coffee', schema: CoffeeSchema}])
+        MongooseModule.forFeature([{name: 'Order', schema: OrderSchema}, {name: 'Coffee', schema: CoffeeSchema}]),
     ],
     controllers: [OrdersController],
-    providers: [OrdersService]
+    providers: [OrdersService],
 })
 export class OrdersModule {}
