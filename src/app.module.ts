@@ -8,7 +8,7 @@ import { OrdersModule } from './orders/orders.module';
 import { ServiceOrdersModule } from './service-orders/service-orders.module';
 
 const DEV = process.env.DATABASE_URL;
-const LOCAL  = 'mongodb://0.0.0.0/coffee-order';
+const LOCAL = 'mongodb://mongo/coffee-order';
 
 @Module({
   imports: [
