@@ -9,6 +9,7 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "webpack": "webpack --config webpack.config.js",
     "start": "NODE_ENV=production node dist/main.js",
+    "start:webpack": "PORT=3333 node dist/server",
     "start:dev": "nodemon",
     "start:debug": "PORT=3333 NODE_ENV=development nodemon --config nodemon-debug.json",
     "prestart:prod": "rimraf dist && npm run build",
