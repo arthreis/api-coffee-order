@@ -5,7 +5,11 @@ services:
         build: .
         command: npm run start:local
         ports:
-            - "3000:3000"
+            - "3333:3333"
+        environment:
+            - NODE_ENV=development
+            - DATABASE_URL=mongodb://mongo/coffee-order
+            - PORT=3333
     mongo:
         container_name: mongo-cafe
         image: mongo:latest
@@ -15,4 +19,3 @@ services:
             - 27017:27017
 volumes:
   mongodata:
-
