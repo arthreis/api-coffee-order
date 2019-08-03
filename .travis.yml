@@ -8,4 +8,4 @@ script:
 
 deploy:
     provider: heroku
-    api_key: 4bc119bd-06cd-41d7-8b62-13caba70aa94
+    api_key: $HEROKU-API
