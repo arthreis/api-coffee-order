@@ -16,7 +16,7 @@ export class OrdersService {
 
     async find(orderId: ObjectId): Promise<IOrder> {
         try {
-            return await this.orderSchema.findOne({_id: orderId});
+            return await this.orderSchema.findOne({_id: orderId}).exec();
         } catch (error) {
             throw new InternalServerErrorException(error.message);
         }
@@ -24,7 +24,10 @@ export class OrdersService {
 
     async findAll(): Promise<IOrder[]> {
         try {
-            return await this.orderSchema.find();
+            return await this.orderSchema.find()
+                .populate('user', 'name email')
+                .populate('items.product', 'name')
+                .exec();
         } catch (error) {
             throw new InternalServerErrorException(error.message);
         }
@@ -57,7 +60,7 @@ export class OrdersService {
 
     async update(order: IOrder): Promise<IOrder> {
         try {
-            return await this.orderSchema.findOneAndUpdate({_id: order._id}, order, {new: true});
+            return await this.orderSchema.findOneAndUpdate({_id: order._id}, order, {new: true}).exec();
         } catch (error) {
             throw new InternalServerErrorException(error.message);
         }
@@ -65,7 +68,7 @@ export class OrdersService {
 
     async delete(orderId: ObjectId): Promise<IOrder> {
         try {
-            return await this.orderSchema.findOneAndDelete({_id: orderId});
+            return await this.orderSchema.findOneAndDelete({_id: orderId}).exec();
         } catch (error) {
             throw new InternalServerErrorException(error.message);
         }
