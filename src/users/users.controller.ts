@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Body, Post, Put, Delete, Headers } from '@nestjs/common';
+import { Controller, Get, Param, Body, Post, Put, Delete, Headers, Query } from '@nestjs/common';
 import { ApiUseTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { ValidateObjectId } from '../shared/pipes/validate-object-id.pipes';
@@ -11,14 +11,15 @@ export class UsersController {
 
     constructor(private readonly usersService: UsersService) {}
 
+    @Get(':id')
+    async findById(@Param('id') id: string) {
+        return await this.usersService.findById(id);
+    }
+
     @Get()
-    async find(@Headers('user-id') userId: ObjectId, @Headers('user-email') userEmail: string) {
-        if (userId || userEmail) {
-            const condition = !!userId ? { _id: userId } : { email: userEmail };
-            return await this.usersService.findByIdOrEmail(condition);
-        } else {
-            return await this.usersService.findAll();
-        }
+    async find(@Query('email') email: string) {
+        const conditions = !!email ? { email: email} : {};
+        return await this.usersService.find(conditions);
     }
 
     @Post()
@@ -31,8 +32,8 @@ export class UsersController {
         return await this.usersService.update(user);
     }
 
-    @Delete(':userId')
-    async delete(@Param('userId', new ValidateObjectId()) userId: ObjectId) {
+    @Delete(':id')
+    async delete(@Param('id', new ValidateObjectId()) userId: ObjectId) {
         return await this.usersService.delete(userId);
     }
 }

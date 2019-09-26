@@ -9,11 +9,11 @@ export class UsersService {
 
     constructor(@InjectModel('User') private readonly userSchema: Model<IUser>) {}
 
-    async findByIdOrEmail(condition: object): Promise<IUser> {
-        return this.userSchema.findOne(condition);
+    async findById(userId: string): Promise<IUser> {
+        return this.userSchema.findOne({_id: userId});
     }
-    async findAll(): Promise<IUser[]> {
-        return this.userSchema.find();
+    async find(conditions: object): Promise<IUser[]> {
+        return this.userSchema.find(conditions);
     }
     async create(user: IUser): Promise<IUser> {
         return this.userSchema.create(user);
