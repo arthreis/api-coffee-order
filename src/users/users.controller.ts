@@ -18,7 +18,7 @@ export class UsersController {
 
     @Get()
     async find(@Query('email') email: string) {
-        const conditions = !!email ? { email: email} : {};
+        const conditions = !!email ? { email } : {};
         return await this.usersService.find(conditions);
     }
 
