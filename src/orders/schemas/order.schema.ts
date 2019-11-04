@@ -10,24 +10,27 @@ export const OrderSchema = new mongoose.Schema({
         enum: ['awaiting', 'associated'],
         default: 'awaiting',
     },
-    products: [{
-        quantity: {
-            type: Number,
-            required: true,
-        },
-        price: {
-            type: Number,
-            required: true,
-        },
-        product: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'CoffeeSchema',
-            required: true,
-        }
-    }],
+    items: [
+        new mongoose.Schema({
+            quantity: {
+                type: Number,
+                required: true,
+                min: 1,
+            },
+            subtotal: {
+                type: Number,
+                required: true,
+            },
+            product: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Coffee',
+                required: true,
+            },
+        }, {_id: false}),
+    ],
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'UserSchema',
+        ref: 'User',
         required: true,
     },
     totalValue: {

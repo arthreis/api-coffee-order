@@ -7,12 +7,12 @@ import { InjectModel } from '@nestjs/mongoose';
 @Injectable()
 export class ServiceOrdersService {
     constructor(
-        @InjectModel("ServiceOrder") private readonly serciceOrderSchema: Model<IServiceOrder>
-    ){}
+        @InjectModel('ServiceOrder') private readonly serciceOrderSchema: Model<IServiceOrder>,
+    ) {}
 
-    async find(osNumber: String): Promise<IServiceOrder> {
+    async find(osNumber: string): Promise<IServiceOrder> {
         try {
-            return await this.serciceOrderSchema.findOne({serviceOrderNumber: osNumber})
+            return await this.serciceOrderSchema.findOne({serviceOrderNumber: osNumber});
         } catch (error) {
             throw new InternalServerErrorException(error.message);
         }
@@ -44,7 +44,7 @@ export class ServiceOrdersService {
 
     async delete(serviceOrderNumber: ObjectId): Promise<IServiceOrder> {
         try {
-            return await this.serciceOrderSchema.findOneAndDelete({serviceOrderNumber: serviceOrderNumber});
+            return await this.serciceOrderSchema.findOneAndDelete({serviceOrderNumber});
         } catch (error) {
             throw new InternalServerErrorException(error.message);
         }

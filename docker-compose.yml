@@ -1,22 +1,21 @@
-version: "2"
+version: "3"
 
 services:
-    app:
-        container_name: app
-        restart: always
+    api:
         build: .
         command: npm run start:local
-        depends_on:
-            - "mongo"
         ports:
-            - 3000:3000
-        volumes:
-            - .:/usr/app
+            - "3333:3333"
+        environment:
+            - NODE_ENV=development
+            - DATABASE_URL=mongodb://mongo/coffee-order
+            - PORT=3333
     mongo:
-        container_name: mongo
-        image: mongo
+        container_name: mongo-cafe
+        image: mongo:latest
         volumes:
-            - ./data:/data/db
+            - mongodata:/data/db
         ports:
             - 27017:27017
-
+volumes:
+    mongodata:

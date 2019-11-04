@@ -7,12 +7,12 @@ import { UsersModule } from './users/users.module';
 import { OrdersModule } from './orders/orders.module';
 import { ServiceOrdersModule } from './service-orders/service-orders.module';
 
-const DEV = "mongodb://coffee-order-user:c0ff33-0rd3r@ds261296.mlab.com:61296/coffee-order";
-const LOCAL  = "mongodb://0.0.0.0/coffee-order";
+const DATABASE_URL = process.env.DATABASE_URL;
+const LOCAL = 'mongodb://0.0.0.0/coffee-order';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(DEV, {useNewUrlParser: true}),
+    MongooseModule.forRoot(DATABASE_URL || LOCAL, {useNewUrlParser: true, useCreateIndex: true}),
     CoffeeModule,
     UsersModule,
     OrdersModule,

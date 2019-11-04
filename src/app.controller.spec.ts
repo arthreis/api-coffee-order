@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { apiTitle, version } from "./conf/configuration";
+import { apiTitle, version } from './conf/configuration';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -16,8 +16,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "{ "title": "'+apiTitle()+'", "version": "'+version()+'" }"', () => {
-      expect(appController.root()).toBe('{ "title": "'+apiTitle()+'", "version": "'+version()+'" }');
+    it('should return "{ "title": "' + apiTitle() + '", "version": "' + version() + '" }"', () => {
+      expect(appController.root()).toBe('{ "title": "' + apiTitle() + '", "version": "' + version() + '" }');
     });
   });
 });

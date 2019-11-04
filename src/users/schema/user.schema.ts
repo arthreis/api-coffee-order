@@ -1,11 +1,7 @@
-import { Schema } from "mongoose";
+import { Schema } from 'mongoose';
 
 export const UserSchema = new Schema({
     name: {
-        type: String,
-        required: true,
-    },
-    lastName: {
         type: String,
         required: true,
     },
@@ -14,4 +10,4 @@ export const UserSchema = new Schema({
         required: true,
         unique: true,
     },
-}, {timestamps: true})
+}, {timestamps: true});
