@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, Query } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { IOrder } from './interfaces/order.interface';
 import { ApiUseTags } from '@nestjs/swagger';
@@ -13,12 +13,13 @@ export class OrdersController {
     constructor(private readonly ordersService: OrdersService) {}
 
     @Get(':orderId')
-    async find(@Param('orderId', new ValidateObjectId()) orderId: ObjectId) {
+    async findById(@Param('orderId', new ValidateObjectId()) orderId: ObjectId) {
         return await this.ordersService.find(orderId);
     }
     @Get()
-    async findAll() {
-        return await this.ordersService.findAll();
+    async find(@Query('email') email: string) {
+        const conditions = !!email ? { email } : {};
+        return await this.ordersService.find(conditions);
     }
 
     @Post()

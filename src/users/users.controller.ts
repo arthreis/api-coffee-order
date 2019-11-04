@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Body, Post, Put, Delete, Headers, Query } from '@nestjs/common';
+import { Controller, Get, Param, Body, Post, Put, Delete, Query } from '@nestjs/common';
 import { ApiUseTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { ValidateObjectId } from '../shared/pipes/validate-object-id.pipes';
