@@ -18,7 +18,7 @@ export class CoffeeController {
         return res.status(HttpStatus.OK).json(coffees);
     }
 
-    @Get('coffee/:coffeeId')
+    @Get('coffees/:coffeeId')
     async getCoffee(@Res() res: Response, @Param('coffeeId', new ValidateObjectId()) coffeeId: ObjectId) {
         const coffee = await this.coffeeService.getCoffee(coffeeId);
         if (!coffee) {
@@ -27,7 +27,7 @@ export class CoffeeController {
         return res.status(HttpStatus.OK).json(coffee);
     }
 
-    @Post('/coffee')
+    @Post('/coffees')
     async addCoffee(@Res() res: Response, @Body() coffee: Coffee) {
         const newCoffee = await this.coffeeService.addCoffee(coffee);
         return res.status(HttpStatus.OK).json({
@@ -36,7 +36,7 @@ export class CoffeeController {
         });
     }
 
-    @Put('/coffee')
+    @Put('/coffees')
     async editCoffee(@Res() res: Response, @Query('coffeeId', new ValidateObjectId()) coffeeId: ObjectId, @Body() coffee: Coffee) {
         const editedCoffee = await this.coffeeService.editCoffee(coffeeId, coffee);
         if (!editedCoffee) {
@@ -48,7 +48,7 @@ export class CoffeeController {
         });
     }
 
-    @Delete('/coffee')
+    @Delete('/coffees')
     async deleteCoffee(@Res() res: Response, @Query('coffeeId', new ValidateObjectId()) coffeId: ObjectId) {
         const deletedCoffee = await this.coffeeService.deleteCoffee(coffeId);
         return res.status(HttpStatus.OK).json({
