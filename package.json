@@ -24,7 +24,7 @@
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
-    "@nestjs/common": "6.3.1",
+    "@nestjs/common": "6.0.0",
     "@nestjs/core": "6.0.0",
     "@nestjs/mongoose": "6.1.2",
     "@nestjs/platform-express": "6.0.0",
